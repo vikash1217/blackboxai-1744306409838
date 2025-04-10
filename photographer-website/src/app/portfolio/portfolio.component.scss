@@ -1,23 +1,21 @@
 .card {
-  transition: transform 0.3s;
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
     transform: translateY(-5px);
 
-    .position-absolute {
+    .opacity-0 {
       opacity: 1 !important;
     }
   }
-}
 
-.modal {
-  &.show {
-    display: block;
+  .transition {
+    transition: opacity 0.3s ease-in-out;
   }
 }
 
 .btn {
-  transition: all 0.3s;
+  transition: all 0.3s ease-in-out;
   
   &:hover {
     transform: scale(1.05);
@@ -25,9 +23,42 @@
 }
 
 .badge {
-  transition: background-color 0.3s;
+  transition: all 0.2s ease-in-out;
   
   &:hover {
     background-color: #e9ecef !important;
   }
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+  max-width: 800px;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.img-fluid {
+  max-height: 60vh;
+  object-fit: contain;
+}
+
+// Animation classes
+.fade {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+  transform: translateY(-20px);
+}
+
+.modal.show .modal-dialog {
+  transform: translateY(0);
 }
