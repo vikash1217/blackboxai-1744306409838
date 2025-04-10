@@ -1,73 +1,74 @@
-<div class="container mx-auto px-4 py-12">
-  <h1 class="text-4xl font-bold text-center mb-12">My Portfolio</h1>
+<div class="container py-5">
+  <h1 class="display-4 text-center mb-5">My Portfolio</h1>
 
   <!-- Portfolio Categories -->
-  <div class="flex flex-wrap justify-center gap-4 mb-12">
+  <div class="d-flex justify-content-center flex-wrap gap-3 mb-5">
     <button *ngFor="let category of categories"
             (click)="filterByCategory(category)"
-            [class.active]="selectedCategory === category"
-            class="category-button">
+            [class.btn-primary]="selectedCategory === category"
+            [class.btn-secondary]="selectedCategory !== category"
+            class="btn">
       {{category}}
     </button>
   </div>
 
   <!-- Portfolio Grid -->
-  <div class="portfolio-grid">
-    <div *ngFor="let project of filteredProjects" 
-         class="portfolio-item">
-      <div class="relative overflow-hidden rounded-lg">
-        <img [src]="project.imageUrl" 
-             [alt]="project.title" 
-             class="w-full h-64 object-cover">
-        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 
-                    transition-opacity duration-300 flex items-center justify-center">
-          <button (click)="openProject(project)" 
-                  class="btn btn-primary">
-            View Details
-          </button>
+  <div class="row g-4">
+    <div *ngFor="let project of filteredProjects" class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <div class="position-relative">
+          <img [src]="project.imageUrl" 
+               [alt]="project.title" 
+               class="card-img-top"
+               style="height: 250px; object-fit: cover;">
+          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+               style="background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s;">
+            <button (click)="openProject(project)" 
+                    class="btn btn-primary">
+              View Details
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="p-6 bg-white">
-        <h3 class="text-xl font-semibold mb-2">{{project.title}}</h3>
-        <p class="text-gray-600 mb-4 line-clamp-2">{{project.description}}</p>
-        <div class="flex flex-wrap gap-2">
-          <span *ngFor="let tag of project.tags" 
-                class="tag">
-            {{tag}}
-          </span>
+        <div class="card-body">
+          <h5 class="card-title">{{project.title}}</h5>
+          <p class="card-text">{{project.description}}</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span *ngFor="let tag of project.tags" 
+                  class="badge bg-light text-dark">
+              {{tag}}
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Project Details Modal -->
-  <div *ngIf="selectedProject" 
-       class="modal-overlay"
+  <div *ngIf="selectedProject" class="modal fade show d-block" 
+       style="background-color: rgba(0,0,0,0.5);"
        (click)="closeProject()">
-    <div class="modal-content p-6" 
+    <div class="modal-dialog modal-lg modal-dialog-centered" 
          (click)="$event.stopPropagation()">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-bold">{{selectedProject.title}}</h2>
-        <button (click)="closeProject()" 
-                class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
-          <i class="fas fa-times text-xl"></i>
-        </button>
-      </div>
-      <img [src]="selectedProject.imageUrl" 
-           [alt]="selectedProject.title" 
-           class="w-full rounded-lg mb-6">
-      <p class="text-gray-700 mb-6 text-lg leading-relaxed">{{selectedProject.description}}</p>
-      <div class="flex flex-wrap gap-2 mb-6">
-        <span *ngFor="let tag of selectedProject.tags" 
-              class="tag">
-          {{tag}}
-        </span>
-      </div>
-      <div class="flex justify-end">
-        <button (click)="closeProject()" 
-                class="btn btn-secondary">
-          Close
-        </button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{selectedProject.title}}</h5>
+          <button type="button" class="btn-close" (click)="closeProject()"></button>
+        </div>
+        <div class="modal-body">
+          <img [src]="selectedProject.imageUrl" 
+               [alt]="selectedProject.title" 
+               class="img-fluid rounded mb-4">
+          <p class="lead">{{selectedProject.description}}</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span *ngFor="let tag of selectedProject.tags" 
+                  class="badge bg-light text-dark">
+              {{tag}}
+            </span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeProject()">Close</button>
+        </div>
       </div>
     </div>
   </div>
