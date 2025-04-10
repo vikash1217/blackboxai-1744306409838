@@ -1,41 +1,52 @@
 /* Import Bootstrap CSS */
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
-/* Custom styles */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Custom Global Styles */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f8f9fa;
 }
 
+/* Custom Bootstrap Overrides */
 .btn {
-  border-radius: 25px;
-  padding: 8px 20px;
-  transition: all 0.3s ease;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 500;
+}
 
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+  }
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  
+  &:hover {
+    background-color: #5c636a;
+    border-color: #5c636a;
   }
 }
 
 .card {
   border: none;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .badge {
   font-weight: 500;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
 }
 
 /* Animations */
@@ -65,4 +76,34 @@ body {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* Modal Customization */
+.modal-content {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  padding: 1.5rem;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  padding: 1.5rem;
+}
+
+/* Utility Classes */
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+
+.gap-4 {
+  gap: 1.5rem;
 }
