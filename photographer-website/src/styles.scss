@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Bootstrap CSS */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.btn {
+  border-radius: 25px;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card {
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.badge {
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
