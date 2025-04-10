@@ -1,0 +1,74 @@
+<div class="container mx-auto px-4 py-12">
+  <h1 class="text-4xl font-bold text-center mb-12">My Portfolio</h1>
+
+  <!-- Portfolio Categories -->
+  <div class="flex flex-wrap justify-center gap-4 mb-12">
+    <button *ngFor="let category of categories"
+            (click)="filterByCategory(category)"
+            [class.active]="selectedCategory === category"
+            class="category-button">
+      {{category}}
+    </button>
+  </div>
+
+  <!-- Portfolio Grid -->
+  <div class="portfolio-grid">
+    <div *ngFor="let project of filteredProjects" 
+         class="portfolio-item">
+      <div class="relative overflow-hidden rounded-lg">
+        <img [src]="project.imageUrl" 
+             [alt]="project.title" 
+             class="w-full h-64 object-cover">
+        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 
+                    transition-opacity duration-300 flex items-center justify-center">
+          <button (click)="openProject(project)" 
+                  class="btn btn-primary">
+            View Details
+          </button>
+        </div>
+      </div>
+      <div class="p-6 bg-white">
+        <h3 class="text-xl font-semibold mb-2">{{project.title}}</h3>
+        <p class="text-gray-600 mb-4 line-clamp-2">{{project.description}}</p>
+        <div class="flex flex-wrap gap-2">
+          <span *ngFor="let tag of project.tags" 
+                class="tag">
+            {{tag}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Details Modal -->
+  <div *ngIf="selectedProject" 
+       class="modal-overlay"
+       (click)="closeProject()">
+    <div class="modal-content p-6" 
+         (click)="$event.stopPropagation()">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-bold">{{selectedProject.title}}</h2>
+        <button (click)="closeProject()" 
+                class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <img [src]="selectedProject.imageUrl" 
+           [alt]="selectedProject.title" 
+           class="w-full rounded-lg mb-6">
+      <p class="text-gray-700 mb-6 text-lg leading-relaxed">{{selectedProject.description}}</p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span *ngFor="let tag of selectedProject.tags" 
+              class="tag">
+          {{tag}}
+        </span>
+      </div>
+      <div class="flex justify-end">
+        <button (click)="closeProject()" 
+                class="btn btn-secondary">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
