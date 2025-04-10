@@ -1,0 +1,24 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-4xl font-bold text-center mb-8">Photo Gallery</h1>
+  
+  <!-- Gallery Grid -->
+  <div class="gallery-grid">
+    <!-- Gallery Items -->
+    <div *ngFor="let photo of photos" class="gallery-item">
+      <img [src]="photo.url" [alt]="photo.title" class="gallery-image">
+      <div class="gallery-overlay">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">{{photo.title}}</h3>
+          <p class="text-sm">{{photo.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load More Button -->
+  <div class="text-center">
+    <button (click)="loadMore()" class="load-more-button">
+      Load More
+    </button>
+  </div>
+</div>
