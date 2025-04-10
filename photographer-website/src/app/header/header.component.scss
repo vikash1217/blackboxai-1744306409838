@@ -1,0 +1,61 @@
+nav {
+  @apply fixed w-full z-50;
+  backdrop-filter: blur(5px);
+  background-color: rgba(17, 24, 39, 0.95); // slightly transparent dark background
+}
+
+.nav-link {
+  @apply relative;
+  
+  &::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300;
+  }
+  
+  &:hover::after {
+    @apply w-full;
+  }
+}
+
+// Mobile menu animation
+.mobile-menu {
+  @apply transform transition-transform duration-300;
+  
+  &.open {
+    @apply translate-x-0;
+  }
+  
+  &.closed {
+    @apply -translate-x-full;
+  }
+}
+
+// Logo animation
+.logo {
+  @apply transition-transform duration-300;
+  
+  &:hover {
+    @apply transform scale-110;
+    
+    i {
+      @apply rotate-12;
+    }
+  }
+  
+  i {
+    @apply transition-transform duration-300;
+  }
+}
+
+// Button hover effect
+.menu-button {
+  @apply transition-all duration-300;
+  
+  &:hover {
+    @apply transform scale-110;
+  }
+  
+  &:active {
+    @apply transform scale-95;
+  }
+}
