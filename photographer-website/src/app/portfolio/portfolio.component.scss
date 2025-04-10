@@ -1,98 +1,33 @@
-.portfolio-item {
-  @apply transition-all duration-300 hover:shadow-2xl;
-  
+.card {
+  transition: transform 0.3s;
+
   &:hover {
     transform: translateY(-5px);
-    
-    img {
-      @apply scale-110;
+
+    .position-absolute {
+      opacity: 1 !important;
     }
   }
+}
 
-  img {
-    @apply transition-transform duration-300;
+.modal {
+  &.show {
+    display: block;
   }
 }
 
-.category-button {
-  @apply px-6 py-2 rounded-full font-medium transition-all duration-300;
-  
-  &:hover {
-    @apply transform scale-105;
-  }
-  
-  &.active {
-    @apply bg-blue-500 text-white shadow-lg;
-  }
-}
-
-// Modal animation
-.modal-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.modal-content {
-  @apply bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto transform;
-  animation: slideIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-10%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-// Tag styles
-.tag {
-  @apply bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm transition-all duration-200;
-  
-  &:hover {
-    @apply bg-gray-300 transform scale-105;
-  }
-}
-
-// Button styles
 .btn {
-  @apply px-6 py-2 rounded-full transition-all duration-200;
+  transition: all 0.3s;
   
   &:hover {
-    @apply transform scale-105;
-  }
-  
-  &.btn-primary {
-    @apply bg-blue-500 text-white hover:bg-blue-600;
-  }
-  
-  &.btn-secondary {
-    @apply bg-gray-500 text-white hover:bg-gray-600;
+    transform: scale(1.05);
   }
 }
 
-// Grid layout
-.portfolio-grid {
-  @apply grid gap-8;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.badge {
+  transition: background-color 0.3s;
   
-  @screen md {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @screen lg {
-    grid-template-columns: repeat(3, 1fr);
+  &:hover {
+    background-color: #e9ecef !important;
   }
 }
