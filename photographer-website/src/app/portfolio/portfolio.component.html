@@ -2,7 +2,7 @@
   <h1 class="display-4 text-center mb-5">My Portfolio</h1>
 
   <!-- Portfolio Categories -->
-  <div class="d-flex justify-content-center flex-wrap gap-3 mb-5">
+  <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
     <button *ngFor="let category of categories"
             (click)="filterByCategory(category)"
             [class.btn-primary]="selectedCategory === category"
@@ -14,24 +14,25 @@
 
   <!-- Portfolio Grid -->
   <div class="row g-4">
-    <div *ngFor="let project of filteredProjects" class="col-12 col-md-6 col-lg-4">
+    <div *ngFor="let project of filteredProjects" class="col-md-6 col-lg-4">
       <div class="card h-100 shadow-sm">
-        <div class="position-relative">
+        <div class="position-relative overflow-hidden">
           <img [src]="project.imageUrl" 
                [alt]="project.title" 
                class="card-img-top"
                style="height: 250px; object-fit: cover;">
-          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-               style="background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s;">
-            <button (click)="openProject(project)" 
-                    class="btn btn-primary">
-              View Details
-            </button>
+          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end bg-dark bg-opacity-50 opacity-0 transition">
+            <div class="text-white p-3">
+              <h3 class="h5 mb-2">{{project.title}}</h3>
+              <p class="small mb-0">{{project.description}}</p>
+            </div>
           </div>
+          <button (click)="openProject(project)" 
+                  class="btn btn-primary position-absolute top-50 start-50 translate-middle opacity-0">
+            View Details
+          </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{project.title}}</h5>
-          <p class="card-text">{{project.description}}</p>
           <div class="d-flex flex-wrap gap-2">
             <span *ngFor="let tag of project.tags" 
                   class="badge bg-light text-dark">
@@ -44,32 +45,36 @@
   </div>
 
   <!-- Project Details Modal -->
-  <div *ngIf="selectedProject" class="modal fade show d-block" 
-       style="background-color: rgba(0,0,0,0.5);"
+  <div *ngIf="selectedProject" 
+       class="modal fade show d-block"
        (click)="closeProject()">
-    <div class="modal-dialog modal-lg modal-dialog-centered" 
-         (click)="$event.stopPropagation()">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{selectedProject.title}}</h5>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header border-0">
+          <h2 class="modal-title h4">{{selectedProject.title}}</h2>
           <button type="button" class="btn-close" (click)="closeProject()"></button>
         </div>
         <div class="modal-body">
           <img [src]="selectedProject.imageUrl" 
                [alt]="selectedProject.title" 
-               class="img-fluid rounded mb-4">
-          <p class="lead">{{selectedProject.description}}</p>
-          <div class="d-flex flex-wrap gap-2">
+               class="img-fluid rounded mb-4 w-100">
+          <p class="text-muted mb-4">{{selectedProject.description}}</p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
             <span *ngFor="let tag of selectedProject.tags" 
                   class="badge bg-light text-dark">
               {{tag}}
             </span>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeProject()">Close</button>
+        <div class="modal-footer border-0">
+          <button type="button" 
+                  class="btn btn-secondary" 
+                  (click)="closeProject()">
+            Close
+          </button>
         </div>
       </div>
     </div>
+    <div class="modal-backdrop fade show"></div>
   </div>
 </div>
